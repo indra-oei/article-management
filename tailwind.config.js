@@ -1,7 +1,15 @@
+import forms from "@tailwindcss/forms";
+
 export default {
-    content: ["./resources/**/*.blade.php", "./resources/**/*.js"],
+    darkMode: "class",
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./vendor/wireui/wireui/src/**/*.php",
+        "./vendor/wireui/wireui/ts/**/*.ts",
+    ],
     theme: {
         extend: {},
     },
-    plugins: [],
+    plugins: [forms],
 };

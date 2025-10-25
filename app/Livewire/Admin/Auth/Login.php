@@ -12,6 +12,6 @@ class Login extends Component
         /** @var \Livewire\Views\View $view */
         $view = view('livewire.admin.auth.login');
 
-        return $view->layout('components.layout.admin.auth');
+        return $view->layout('components.layout.admin.auth-layout');
     }
 }
