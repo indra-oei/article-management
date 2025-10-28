@@ -17,7 +17,7 @@ class Icon extends Component
     public function __construct(string $name = '', string $class = '')
     {
         $this->name = $name;
-        $this->class = 'flex items-center justify-center h-[16px] w-[16px] text-gray-500 ' . $class;
+        $this->class = 'flex items-center justify-center h-[16px] w-[16px] ' . $class;
     }
 
     /**

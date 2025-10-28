@@ -1,3 +1,5 @@
-<x-layout.admin.admin-layout>
-    Admin Dashboard
-</x-layout.admin.admin-layout>
+<main>
+    <x-layout.admin.admin-layout>
+    asd
+    </x-layout.admin.admin-layout>
+</main>
