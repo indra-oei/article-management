@@ -21,7 +21,7 @@ class Button extends Component
         $this->variant = $variant;
 
         $defaultClasses = match ($variant) {
-            'primary' => 'bg-blue-900 hover:bg-indigo-900 text-white text-sm py-2 px-4 rounded',
+            'primary' => 'bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium text-sm py-2 px-4 rounded',
             'secondary' => 'bg-gray-500 hover:bg-gray-700 text-white text-sm py-2 px-4 rounded',
             'danger' => 'bg-red-500 hover:bg-red-700 text-white text-sm py-2 px-4 rounded',
         };

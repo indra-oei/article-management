@@ -24,7 +24,7 @@ class NavLink extends Component
         $this->isOpen = $isOpen;
 
         $activeStyle = match ($isOpen) {
-            true => 'bg-indigo-100 text-violet-500 font-medium ',
+            true => 'bg-indigo-100 text-violet-700 font-medium ',
             false => 'text-gray-600 font-medium '
         };
 
