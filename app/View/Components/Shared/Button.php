@@ -15,15 +15,15 @@ class Button extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(string $type = 'button', string $class = '', string $variant = 'default')
+    public function __construct(string $type = 'button', string $class = '', string $variant = 'primary')
     {
         $this->type = $type;
         $this->variant = $variant;
 
         $defaultClasses = match ($variant) {
-            'primary' => 'bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium text-sm py-2 px-4 rounded',
-            'secondary' => 'bg-gray-500 hover:bg-gray-700 text-white text-sm py-2 px-4 rounded',
-            'danger' => 'bg-red-500 hover:bg-red-700 text-white text-sm py-2 px-4 rounded',
+            'primary' => 'bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-medium text-sm py-2 px-4 rounded transition duration-200 cursor-pointer',
+            'secondary' => 'bg-gray-500 hover:bg-gray-700 text-white text-sm py-2 px-4 rounded transition duration-200 cursor-pointer',
+            'danger' => 'bg-red-500 hover:bg-red-700 text-white text-sm py-2 px-4 rounded transition duration-200 cursor-pointer',
         };
 
         $this->class = trim($defaultClasses . ' ' . $class);
