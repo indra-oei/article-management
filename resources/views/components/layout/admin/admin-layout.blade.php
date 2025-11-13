@@ -47,7 +47,7 @@
             {{ $slot }}
         </main>
     </div>
-    {{-- <footer>footer</footer> --}}
+    <x-ui.toast-bar />
     @livewireScripts
 </body>
 </html>

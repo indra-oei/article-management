@@ -27,7 +27,7 @@ class Input extends Component
         $this->placeholder = $placeholder;
 
         $defaultClasses = match ($variant) {
-            'admin' => 'border border-gray-400 focus:border-blue-400 focus:ring focus:ring-blue-300 focus:outline-none rounded text-[14px] text-gray-700 px-2 py-2 w-full'
+            'admin' => 'border border-gray-400 focus:border-blue-400 focus:ring focus:ring-blue-400 focus:outline-none transition duration-200 rounded text-[14px] text-gray-700 px-2 py-2 w-full'
         };
 
         if ($icon) {

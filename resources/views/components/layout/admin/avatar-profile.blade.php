@@ -1,4 +1,4 @@
-<div x-data="{ open: false }" class="relative" @mouseenter="open = true" @mouseleave="open = false">
+<div x-data="{ open: false }" x-cloak class="relative" @mouseenter="open = true" @mouseleave="open = false">
     <div class="cursor-pointer">
         <img src="{{ asset('/images/avatar.jpg') }}" class="w-[45px] h-[45px] rounded-xl" alt="avatar">
     </div>
