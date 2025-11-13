@@ -17,6 +17,11 @@ class AdminService
         $this->admins = $admins;
     }
 
+    public function findAll(): Admin
+    {
+        return $this->admins->findAll();
+    }
+
     public function create(array $data): Admin
     {
         return $this->admins->create($data);
