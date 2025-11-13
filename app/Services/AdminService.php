@@ -21,4 +21,14 @@ class AdminService
     {
         return $this->admins->create($data);
     }
+
+    public function update(int $id, array $data): Admin
+    {
+        return $this->admins->update($id, $data);
+    }
+
+    public function delete(int $id): bool
+    {
+        return $this->admins->delete($id);
+    }
 }
