@@ -8,30 +8,56 @@ use Livewire\Component;
 
 class UserForm extends Component
 {
+    public $adminId = null;
     public $username;
     public $email;
 
-    protected $rules = [
-        'username' => 'required|string|unique:admins,username'
-    ];
+    protected $listeners = ['editUser'];
+
+    protected function rules(): array
+    {
+        return [
+            'username' => 'required|string|unique:admins,username,' . $this->adminId
+        ];
+    }
+
+    public function editUser(array $user)
+    {
+        $this->adminId = $user['id'];
+        $this->username = $user['username'];
+        $this->email = $user['email'];
+
+        $this->dispatch('open-user-modal');
+    }
 
     public function submit(AdminService $adminService)
     {
-        $this->validate();
+        $this->validate($this->rules());
+        
+        $payload = [
+            'username' => $this->username
+        ];
 
-        $adminService->create([
-            'username' => $this->username,
-            'password' => Hash::make('admin123')
-        ]);
+        if ($this->adminId) {
+            $adminService->update($this->adminId, $payload);
+
+            $this->dispatch('toast', [
+                'message' => 'User updated successfully!',
+                'type' => 'success'
+            ]);
+        } else {
+            $payload['password'] = Hash::make('admin123');
+            $adminService->create($payload);
+
+            $this->dispatch('toast', [
+                'message' => 'User created successfully!',
+                'type' => 'success'
+            ]);
+        }
 
         $this->reset();
 
         $this->dispatch('close-user-modal');
-
-        $this->dispatch('toast', [
-            'message' => 'User created successfully!',
-            'type' => 'success'
-        ]);
     }
 
     public function render()
