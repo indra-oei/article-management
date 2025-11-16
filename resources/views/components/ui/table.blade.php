@@ -1,26 +1,87 @@
-<div class="bg-white rounded-xl px-4 py-2 shadow">
+<div
+    x-data="{
+        confirmationModalOpen: false,
+        userToDeleteId: null,
+        deleteMethod: @js($deleteMethod),
+        objectLabel: @js($deleteObjectLabel),
+        get modalTitle() {
+            return 'Confirmation'
+        },
+        get modalSubtitle() {
+            return `Are you sure you want to delete this ${this.objectLabel}?`
+        },
+        confirmDelete() {
+            if (this.userToDeleteId && this.deleteMethod) {
+                $wire.call(this.deleteMethod, this.userToDeleteId)
+                this.confirmationModalOpen = false
+                this.userToDeleteId = null
+            }
+        }
+    }"
+    x-on:close-modal.window="
+        confirmationModalOpen = false;
+        userToDeleteId = null;
+    "
+    class="bg-white rounded-xl px-4 py-2 shadow"
+>
     <table class="table-auto w-full text-sm">
         <thead class="border-b-2 border-b-indigo-50">
             <tr>
-                <th class="text-left py-2 text-gray-600">No</th>
-                <th class="text-left py-2 text-gray-600">Username</th>
-                <th class="text-left py-2 text-gray-600">Email</th>
-                <th class="text-left py-2 text-gray-600">Action</th>
+                @foreach ($headers as $key => $label)
+                    <th class="text-left py-2 text-gray-600">{{ $label }}</th>
+                @endforeach
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="py-2">1</td>
-                <td class="py-2">Johnson</td>
-                <td class="py-2">johnson@gmail.com</td>
-                <td class="py-2">Action here</td>
-            </tr>
-            <tr>
-                <td class="py-2">2</td>
-                <td class="py-2">Smith</td>
-                <td class="py-2">smith@gmail.com</td>
-                <td class="py-2">Action here</td>
-            </tr>
+            @foreach ($rows as $index => $row)
+                <tr>
+                    @foreach ($headers as $key => $label)
+                        <td wire:key="item-{{ $key }}-{{ $index }}-{{ $row['id'] }}" class="py-2 text-gray-600">
+                            @switch($key)
+                                @case('no')
+                                    {{ $loop->parent->iteration }}
+                                    @break
+
+                                @case('action')
+                                    {{-- If data was not created by system (0) then it should be controllable --}}
+                                    @if (is_null($row['created_by']) || $row['created_by'] > 0)
+                                        <div class="flex items-center gap-1">
+                                            <x-shared.button wire:click="$dispatch('{{ $editEvent }}', [{{ json_encode($row) }}])" icon="pencil" size="small">Edit</x-shared.button>
+                                            <x-shared.button 
+                                                @click="
+                                                    confirmationModalOpen = true;
+                                                    userToDeleteId = {{ $row['id'] }};
+                                                "
+                                                icon="trash"
+                                                size="small" 
+                                                variant="danger"
+                                            >
+                                                Delete
+                                            </x-shared.button>
+                                        </div>
+                                    @else
+                                        -
+                                    @endif
+                                    @break
+
+                                @default
+                                    {{ $row[$key] ?? '-' }}
+                            @endswitch
+                        </td>
+                    @endforeach
+                </tr>
+            @endforeach
         </tbody>
     </table>
+
+    <x-ui.modal 
+        x-bind:title="modalTitle" 
+        x-bind:subtitle="modalSubtitle" 
+        :show="'confirmationModalOpen'"
+    >
+        <div class="flex justify-end gap-2">
+            <x-shared.button variant="primary" @click="confirmationModalOpen = false">Cancel</x-shared.button>
+            <x-shared.button variant="danger" @click="confirmDelete()">Delete</x-shared.button>
+        </div>
+    </x-ui.modal>
 </div>

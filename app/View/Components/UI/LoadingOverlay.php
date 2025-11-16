@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class LoadingOverlay extends Component
 {
+    public ?string $target;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(?string $target = null)
     {
-        //
+        $this->target = $target;
     }
 
     /**

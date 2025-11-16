@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Admin;
 use App\Repositories\AdminRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class AdminService
 {
@@ -17,7 +18,7 @@ class AdminService
         $this->admins = $admins;
     }
 
-    public function findAll(): Admin
+    public function findAll(): Collection
     {
         return $this->admins->findAll();
     }

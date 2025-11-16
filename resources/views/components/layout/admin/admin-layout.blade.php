@@ -48,6 +48,7 @@
         </main>
     </div>
     <x-ui.toast-bar />
+    <x-ui.loading-overlay />
     @livewireScripts
 </body>
 </html>

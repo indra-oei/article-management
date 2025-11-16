@@ -4,30 +4,42 @@ namespace App\Livewire\Admin\User;
 
 use App\Services\AdminService;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class UserForm extends Component
 {
-    public $adminId = null;
+    public ?array $user = null;
     public $username;
-    public $email;
 
-    protected $listeners = ['editUser'];
+    protected $listeners = [
+        'edit-user' => 'setUser',
+        'close-modal' => 'clearForm'
+    ];
 
     protected function rules(): array
     {
         return [
-            'username' => 'required|string|unique:admins,username,' . $this->adminId
+            'username' => [
+                'required',
+                'string',
+                Rule::unique('admins', 'username')->ignore($this->user['id'] ?? null)
+            ]
         ];
     }
 
-    public function editUser(array $user)
+    public function setUser(array $user)
     {
-        $this->adminId = $user['id'];
-        $this->username = $user['username'];
-        $this->email = $user['email'];
+        $this->user = $user;
 
-        $this->dispatch('open-user-modal');
+        $this->fill([
+            'username' => $user['username'] ?? null
+        ]);
+    }
+
+    public function clearForm()
+    {
+        $this->reset();
     }
 
     public function submit(AdminService $adminService)
@@ -38,8 +50,8 @@ class UserForm extends Component
             'username' => $this->username
         ];
 
-        if ($this->adminId) {
-            $adminService->update($this->adminId, $payload);
+        if ($this->user) {
+            $adminService->update($this->user['id'], $payload);
 
             $this->dispatch('toast', [
                 'message' => 'User updated successfully!',
@@ -55,9 +67,9 @@ class UserForm extends Component
             ]);
         }
 
-        $this->reset();
-
-        $this->dispatch('close-user-modal');
+        $this->dispatch('hide-loading');
+        $this->dispatch('close-modal');
+        $this->dispatch('refresh-table')->to('admin.user.user-table');
     }
 
     public function render()

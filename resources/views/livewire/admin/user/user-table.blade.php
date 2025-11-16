@@ -1,0 +1,9 @@
+<div>
+    <x-ui.table 
+        :headers="$headers"
+        :rows="$rows"
+        edit-event="edit-user"
+        delete-event="deleteUser"
+        delete-object-label="user"
+    />
+</div>

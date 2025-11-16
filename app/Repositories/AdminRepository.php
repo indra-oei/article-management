@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Admin;
+use Illuminate\Database\Eloquent\Collection;
 
 class AdminRepository
 {
-    public function findAll(): Admin
+    public function findAll(): Collection
     {
-        return Admin::findAll();
+        return Admin::orderBy('username', 'asc')->get();
     }
 
     public function create(array $data): Admin

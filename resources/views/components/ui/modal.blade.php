@@ -11,14 +11,14 @@
     role="dialog"
     x-cloak
 >
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition duration-300" @click="{{ $close }}"></div>
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition duration-300" @click="$dispatch('close-modal')"></div>
     <div class="flex flex-col gap-4 relative z-10 bg-white rounded-xl p-4 pointer-events-auto">
         <div class="flex items-start gap-8">
             <div class="mr-4">
-                <h1 class="text-lg font-bold text-gray-600">{{ $title }}</h1>
-                <h4 class="text-sm text-gray-400">{{ $subtitle }}</h4>
+                <h1 class="text-lg font-bold text-gray-600" x-text="modalTitle"></h1>
+                <h4 class="text-sm text-gray-400" x-text="modalSubtitle"></h4>
             </div>
-            <button @click="{{ $close }}" class="p-2 bg-red-50 text-red-700 stroke-2 hover:bg-red-100 transitions duration-100 rounded cursor-pointer">
+            <button @click="$dispatch('close-modal')" class="p-2 bg-red-50 text-red-700 stroke-2 hover:bg-red-100 transitions duration-100 rounded cursor-pointer">
                 <x-shared.icon name="close" />
             </button>
         </div>
