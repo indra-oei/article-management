@@ -12,7 +12,7 @@
     x-cloak
 >
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition duration-300" @click="$dispatch('close-modal')"></div>
-    <div class="flex flex-col gap-4 relative z-10 bg-white rounded-xl p-4 pointer-events-auto">
+    <div class="flex flex-col gap-6 relative z-10 bg-white rounded-xl p-4 pointer-events-auto">
         <div class="flex items-start gap-8">
             <div class="mr-4">
                 <h1 class="text-lg font-bold text-gray-600" x-text="modalTitle"></h1>

@@ -12,7 +12,7 @@
         }" 
         x-on:edit-category.window="
             modalOpen = true;
-            modalTitle = 'Edit User';
+            modalTitle = 'Edit Category';
             selectedUser = $event.detail[0]
         "
         x-on:close-modal.window="
