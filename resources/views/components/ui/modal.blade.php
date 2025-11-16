@@ -10,6 +10,7 @@
     aria-modal="true"
     role="dialog"
     x-cloak
+    x-on:keydown.escape.window="$dispatch('close-modal')"
 >
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition duration-300" @click="$dispatch('close-modal')"></div>
     <div class="flex flex-col gap-6 relative z-10 bg-white rounded-xl p-4 pointer-events-auto">
