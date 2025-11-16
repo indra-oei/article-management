@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Repositories\CategoryRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class CategoryService
 {
@@ -17,7 +18,7 @@ class CategoryService
         $this->categories = $categories;
     }
 
-    public function findAll(): Category
+    public function findAll(): Collection
     {
         return $this->categories->findAll();
     }

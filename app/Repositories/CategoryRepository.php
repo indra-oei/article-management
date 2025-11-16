@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 
 class CategoryRepository
 {
-    public function findAll(): Category
+    public function findAll(): Collection
     {
-        return Category::findAll();
+        return Category::orderBy('name', 'asc')->get();
     }
     
     public function create(array $data): Category
