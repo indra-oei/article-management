@@ -3,7 +3,7 @@
         :headers="$headers"
         :rows="$rows"
         edit-event="edit-category"
-        delete-event="deleteCategory"
+        delete-method="deleteCategory"
         delete-object-label="category"
     />
 </div>

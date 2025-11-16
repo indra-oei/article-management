@@ -54,7 +54,7 @@ class UserForm extends Component
             $adminService->update($this->user['id'], $payload);
 
             $this->dispatch('toast', [
-                'message' => 'User updated successfully!',
+                'message' => 'User updated',
                 'type' => 'success'
             ]);
         } else {
@@ -62,7 +62,7 @@ class UserForm extends Component
             $adminService->create($payload);
 
             $this->dispatch('toast', [
-                'message' => 'User created successfully!',
+                'message' => 'User created',
                 'type' => 'success'
             ]);
         }

@@ -26,6 +26,10 @@ class UserTable extends Component
     {
         $this->adminService->delete($id);
         $this->dispatch('$refresh');
+        $this->dispatch('toast', [
+            'message' => 'User deleted',
+            'type' => 'error'
+        ]);
     }
     
     public function render()

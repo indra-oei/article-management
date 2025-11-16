@@ -48,14 +48,14 @@ class CategoryForm extends Component
             $categoryService->update($this->category['id'], $payload);
 
             $this->dispatch('toast', [
-                'message' => 'Category updated successfully!',
+                'message' => 'Category updated',
                 'type' => 'success'
             ]);
         } else {
             $categoryService->create($payload);
 
             $this->dispatch('toast', [
-                'message' => 'Category created successfully!',
+                'message' => 'Category created',
                 'type' => 'success'
             ]);
         }

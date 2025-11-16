@@ -1,5 +1,5 @@
 <div 
-    x-data="{ show: false, message: '', type: 'info' }"
+    x-data="{ show: false, message: 'Welcome to AMS', type: 'info' }"
     x-on:toast.window="
         message = $event.detail[0].message || '';
         type = $event.detail[0].type || 'info';
@@ -15,7 +15,7 @@
         'bg-cyan-400': type === 'info'
     }"
     x-cloak
-    class="fixed bottom-4 right-4 text-white px-4 py-2 rounded shadow z-50 flex items-center gap-3 bg-cyan-400"
+    class="fixed bottom-4 right-4 text-white px-4 py-2 rounded shadow z-50 flex items-center gap-2 bg-cyan-400"
 >
     <template x-if="type === 'success'">
         <x-shared.icon name="success" class="w-5 h-5 stroke-2" />
@@ -30,5 +30,5 @@
         <x-shared.icon name="info" class="w-5 h-5 stroke-2" />
     </template>
 
-    <span x-text="message" class="text-sm">User created successfully!</span>
+    <span x-text="message" class="text-sm font-medium"></span>
 </div>

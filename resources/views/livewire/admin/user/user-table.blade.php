@@ -3,7 +3,7 @@
         :headers="$headers"
         :rows="$rows"
         edit-event="edit-user"
-        delete-event="deleteUser"
+        delete-method="deleteUser"
         delete-object-label="user"
     />
 </div>

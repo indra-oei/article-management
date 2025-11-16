@@ -26,6 +26,10 @@ class CategoryTable extends Component
     {
         $this->categoryService->delete($id);
         $this->dispatch('$refresh');
+        $this->dispatch('toast', [
+            'message' => 'Category deleted',
+            'type' => 'error'
+        ]);
     }
 
     public function render()
