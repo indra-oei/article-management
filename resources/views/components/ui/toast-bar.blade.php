@@ -6,6 +6,12 @@
         show = true;
         setTimeout(() => show = false, 3000);
     "
+    x-init="
+        @if(session('toast'))
+            const toast = @js(session('toast'));
+            $nextTick(() => $dispatch('toast', [toast]));
+        @endif
+    "
     x-show="show"
     x-transition
     x-bind:class="{

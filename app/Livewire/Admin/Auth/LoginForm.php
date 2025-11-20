@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Auth;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginForm extends Component
 {
@@ -20,12 +21,19 @@ class LoginForm extends Component
         $this->validate();
 
         if (Auth::guard('admin')->attempt(['username' => $this->username, 'password' => $this->password])) {
-            session()->regenerate();
+            request()->session()->regenerate();
 
-            return redirect()->intended('/admin/dashboard');
+            session()->flash('toast', [
+                'message' => 'Welcome back ' . Auth::guard('admin')->user()->username . '!',
+                'type' => 'info',
+            ]);
+            return redirect()->intended(route('admin.dashboard'));
         }
 
-        $this->addError('username', 'The provided credentials are incorrect.');
+        $this->dispatch('toast', [
+            'message' => 'User not found or wrong credentials',
+            'type' => 'error'
+        ]);
     }
 
     public function render()

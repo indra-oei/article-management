@@ -9,5 +9,5 @@
     <div class="mb-4">
         <x-shared.input type="password" wire:model.defer='password' icon="lock" placeholder="Enter your password" />
     </div>
-    <x-shared.button type="submit" variant="primary" class="w-full">Login</x-shared.button>
+    <x-shared.button type="submit" variant="primary" size="large" class="w-full justify-center">Login</x-shared.button>
 </form>

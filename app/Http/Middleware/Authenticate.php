@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Auth\Middleware\Authenticate as MiddlewareAuthenticate;
@@ -16,6 +17,10 @@ class Authenticate extends MiddlewareAuthenticate
             default => route('login'),
         };
 
-        return redirect($fallback);
+        throw new AuthenticationException(
+            'Unauthenticated.',
+            $guards,
+            $request->expectsJson() ? null : $fallback,
+        );
     }
 }
