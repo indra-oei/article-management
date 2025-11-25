@@ -7,6 +7,10 @@
         x-transition
         class="absolute right-0 mt-1 w-48 bg-white rounded-md shadow-lg z-50"
     >
+        <div class="flex flex-col leading-4.5 px-4 py-2 border-b-2 border-b-indigo-100">
+            <p class="text-gray-600 font-medium">{{ $user->username }}</p>
+            <small class="text-2xs text-gray-400">Admin/Author</small>
+        </div>
         <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">Change Password</a>
         <form method="POST" action="{{ route('admin.logout') }}">
             @csrf
