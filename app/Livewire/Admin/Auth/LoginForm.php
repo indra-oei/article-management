@@ -30,6 +30,7 @@ class LoginForm extends Component
             return redirect()->intended(route('admin.dashboard'));
         }
 
+        $this->dispatch('hide-loading');
         $this->dispatch('toast', [
             'message' => 'User not found or wrong credentials',
             'type' => 'error'

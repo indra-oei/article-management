@@ -8,6 +8,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 
+Route::get('/', function() {
+    return redirect()->route('admin.dashboard');
+});
+
 Route::prefix('auth')->middleware('guest:admin')->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
 });
