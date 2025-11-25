@@ -33,6 +33,11 @@ class AdminService
         return $this->admins->update($id, $data);
     }
 
+    public function changePassword(int $id, string $newPassword): Admin
+    {
+        return $this->admins->changePassword($id, $newPassword);
+    }
+
     public function delete(int $id): bool
     {
         return $this->admins->delete($id);

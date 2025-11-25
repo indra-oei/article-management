@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\LogoutController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -20,6 +21,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('users', [UserController::class, 'index'])->name('users');
     Route::get('category', [CategoryController::class, 'index'])->name('category');
+    Route::get('change-password', [ChangePasswordController::class, 'index'])->name('change-password');
 
     Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
 });

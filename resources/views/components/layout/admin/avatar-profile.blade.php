@@ -11,7 +11,7 @@
             <p class="text-gray-600 font-medium">{{ $user->username }}</p>
             <small class="text-2xs text-gray-400">Admin/Author</small>
         </div>
-        <a href="#" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">Change Password</a>
+        <a href="/admin/change-password" class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100">Change Password</a>
         <form method="POST" action="{{ route('admin.logout') }}">
             @csrf
             <button type="submit" class="block w-full text-left cursor-pointer px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Log Out</button>

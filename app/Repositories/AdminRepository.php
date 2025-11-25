@@ -25,6 +25,14 @@ class AdminRepository
         return $admin;
     }
 
+    public function changePassword(int $id, string $newPassword): Admin
+    {
+        $admin = Admin::findOrFail($id);
+        $admin->update(['password' => $newPassword]);
+
+        return $admin;
+    }
+
     public function delete(int $id): bool
     {
         $admin = Admin::findOrFail($id);

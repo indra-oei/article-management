@@ -1,14 +1,20 @@
-<div class="relative w-full">
-    @if ($icon)
-        <x-shared.icon :name="$icon" width="15" height="15" class="absolute left-2 top-1/2 transform -translate-y-1/2" />
-    @endif
+<div class="w-full">
+    <div class="relative">
+        @if ($icon)
+            <x-shared.icon :name="$icon" width="15" height="15" class="absolute left-2 top-1/2 transform -translate-y-1/2" />
+        @endif
 
-    <input type="{{ $type }}" {{ $attributes->merge(['class' => $class]) }} placeholder="{{ $placeholder }}" />
+        <input type="{{ $type }}" {{ $attributes->merge(['class' => $class]) }} placeholder="{{ $placeholder }}" />
 
-    @if ($type === 'password')
-        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" type="button" onclick="togglePasswordVisibility(this)">
-            <x-shared.icon name="eye" />
-        </button>
+        @if ($type === 'password')
+            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer" type="button" onclick="togglePasswordVisibility(this)">
+                <x-shared.icon name="eye" />
+            </button>
+        @endif
+    </div>
+
+    @if ($error)
+        <small class="block text-red-400">{{ $error }}</small>
     @endif
 </div>
 
